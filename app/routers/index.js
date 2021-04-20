@@ -2,15 +2,15 @@
 const express = require('express');
 const router = express.Router();
 
-/** CRUD List */
-router.get('/');
-router.get('/:postId');
-router.get('/category/:categoryId');
+const categoryRouter = require('./categoryRouter');
+const postRouter = require('./postRouter');
 
+const errorController = require('../controllers/errorController');
 
-/** MW 404, toujours en dernier */
-router.use((req, res) => {
-    res.status(404).json({error: "not found"});
-});
+/** CRUD */
+router.use('/categories', categoryRouter);
+router.use('/posts', postRouter);
+
+router.use(errorController.error404);
 
 module.exports = router;
