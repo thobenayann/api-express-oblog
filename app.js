@@ -1,7 +1,7 @@
 // Toujours charger les vars d'environnement en premier
 require('dotenv').config();
 const express = require('express');
-const router = require('./app/router');
+const router = require('./app/routers');
 const cors = require('cors');
 
 // Création de notre application express
