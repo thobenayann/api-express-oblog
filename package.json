@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "import": "node import/import.js",
     "start": "node app.js",
     "dev": "nodemon app.js"
   },

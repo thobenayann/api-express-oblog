@@ -11,7 +11,7 @@ const categories = require('../data/categories.json');
 // Cela nous pemettra d'utiliser await directement dans notre fichier
 (async () => {
     const client = new Client({
-        connectionString: process.env.DATABASE_URL,
+        connectionString: process.env.PG_URL,
     });
     await client.connect();
 

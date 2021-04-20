@@ -8,8 +8,7 @@
 BEGIN TRANSACTION;
 
 /* commencer par supprimer toutes les tables si elles existent */
-DROP TABLE IF EXISTS "post";
-DROP TABLE IF EXISTS "category";
+DROP TABLE IF EXISTS "post", "category";
 
 /* Table category */
 CREATE TABLE IF NOT EXISTS "category" (
@@ -29,7 +28,7 @@ CREATE TABLE IF NOT EXISTS "post" (
     "slug" TEXT NOT NULL,
     "excerpt" TEXT,
     "content" TEXT,
-    "category_id" INT NOT NULL REFERENCES "category(id)",
+    "category_id" INT NOT NULL REFERENCES "category"("id"),
     "created_at" TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
     "updated_at" TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW()
 );
