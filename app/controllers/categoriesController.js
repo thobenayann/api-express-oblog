@@ -1,9 +1,13 @@
 const categoriesDataMapper = require('../dataMappers/categoriesDataMapper');
 
 module.exports = {
-    async getAllCategories(_, response) {
-        const categories = await categoriesDataMapper.getAllCategories();
+    async allCategories(_, response, next) {
+        try {
+            const categories = await categoriesDataMapper.getAllCategories();
 
-        response.json({data: categories});
-    }
+            response.json({data: categories});
+        } catch(error) {
+            next(error);
+        }
+    },
 }
