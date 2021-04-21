@@ -7,7 +7,6 @@ const postRouter = require('./postRouter');
 
 const errorController = require('../controllers/errorController');
 
-/** CRUD */
 router.use('/categories', categoryRouter);
 router.use('/posts', postRouter);
 
