@@ -69,10 +69,13 @@ module.exports = {
         }
     },
 
-    async createPost(request, response) {
-        const post = request.body;
-
-        const post = await postsDataMapper.createPost(post);
-        response.json({ data: post })
-    }
+    async createPost(request, response, next) {
+        try {
+            const post = request.body;
+            const savedPost = await postsDataMapper.createPost(post);
+            response.json({ data: savedPost })
+        } catch (error) {
+            next(error);
+        }
+    },
 }
