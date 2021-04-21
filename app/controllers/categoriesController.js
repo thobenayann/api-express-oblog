@@ -7,7 +7,8 @@ module.exports = {
 
             response.json({data: categories});
         } catch(error) {
+            // Quand j'appelle next avec un argument je passe dans la chaine d'erreur
             next(error);
         }
     },
-}
+};

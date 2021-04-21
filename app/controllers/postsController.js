@@ -45,7 +45,6 @@ module.exports = {
         try {
             const { categoryId } = request.params;
 
-            // /!\ petit piège
             // Ici getPostsByCategoryId peut nous renvoyer une liste vide
             // pour deux raisons différentes:
             // 1. l'utilisateur demande un categoryId qui n'existe pas
@@ -54,15 +53,15 @@ module.exports = {
             // choix 1 => 404
             // choix 2 => liste vide
 
-            const category = await categoriesDataMapper.getAllCategories(categoryId);
+            const category = await categoriesDataMapper.getCategoryById(categoryId);
 
-            if(! category) {
+            if (! category) {
                 response.locals.notFound = "category";
                 next();
                 return;
             }
 
-            const postsList = await postsDataMapper.getPostByCategoryId(categoryId);
+            const postsList = await postsDataMapper.getPostsByCategoryId(categoryId);
 
             response.json({ data: postsList })
         } catch(error) {

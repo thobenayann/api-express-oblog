@@ -1,5 +1,4 @@
 const client = require('./client');
-const { getPostByCategoryId } = require('./postsDataMapper');
 
 module.exports = {
     async getAllCategories() {

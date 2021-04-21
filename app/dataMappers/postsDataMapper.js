@@ -24,7 +24,7 @@ module.exports = {
         return result.rows[0];
     },
 
-    async getPostByCategoryId(categoryId) {
+    async getPostsByCategoryId(categoryId) {
         const result = await client.query('SELECT * FROM post WHERE category_id = $1', [categoryId]);
         return result.rows;
     }

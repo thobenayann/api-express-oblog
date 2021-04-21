@@ -1,6 +1,10 @@
 module.exports = {
     // Middleware pour gérer les erreurs 404
-    async error404(request, response, next) {
+    async error404(_, response) {
+        if (! response.locals.notFound) {
+            response.locals.notFound = "route";
+        }
+
         response.status(404).json({
             error: {
                 code: 404,
@@ -17,7 +21,8 @@ module.exports = {
     // les MW de gestion d'erreur prennent EXACTEMENT 4 paramètres
     // Pour passer de la chaine classique à la chaine d'erreur, on appel next
     // Mais en lui donnant un paramètre qui sera notre erreur.
-    async error500(error, _, response, _) {
+    async error500(error, _, response, __) {
+        console.error(error);
         response.status(500).json({
             error: {
                 code: 500,
