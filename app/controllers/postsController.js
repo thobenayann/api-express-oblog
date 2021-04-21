@@ -68,4 +68,11 @@ module.exports = {
             next(error);
         }
     },
+
+    async createPost(request, response) {
+        const post = request.body;
+
+        const post = await postsDataMapper.createPost(post);
+        response.json({ data: post })
+    }
 }

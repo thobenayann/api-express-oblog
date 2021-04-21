@@ -27,5 +27,19 @@ module.exports = {
     async getPostsByCategoryId(categoryId) {
         const result = await client.query('SELECT * FROM post WHERE category_id = $1', [categoryId]);
         return result.rows;
+    },
+
+    async createPost(post) {
+        const result = await client.query(`INSERT INTO post(title, slug, excerpt, content, category_id)
+                                           VALUES($1, $2, $3, $4, $5) RETURNING *`,
+                                           // RETURNING * va me renvoyer toute l'entité créée, (id compris)
+                                           [
+                                               post.title,
+                                               post.slug,
+                                               post.excerpt,
+                                               post.content,
+                                               post.category_id
+                                           ])
+        return result.rows[0];
     }
 };
